@@ -11,11 +11,11 @@
     "build"
   ],
   "scripts": {
-    "start:storybook": "start-storybook",
+    "start:storybook": "start-storybook -p 5000",
     "build:tailwind": "postcss src/css/index.src.css -o src/css/index.css",
     "watch:tailwind": "postcss -w src/css/index.src.css -o src/css/index.css",
     "watch:rollup": "rollup -c rollup.config.js --watch",
-    "storybook": "run-p watch:tailwind start:storybook",
+    "storybook": "yarn build:tailwind && run-p watch:tailwind start:storybook",
     "dev": "run-p watch:tailwind watch:rollup",
     "build": "export NODE_ENV=production && rollup -c rollup.config.js",
     "test": "jest",
@@ -51,6 +51,7 @@
     "rollup-plugin-postcss": "^3.1.1",
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript2": "^0.27.0",
+    "storybook-dark-mode": "^0.4.1",
     "tailwindcss": "^1.4.4",
     "ts-jest": "^25.4.0",
     "ts-loader": "^7.0.2",

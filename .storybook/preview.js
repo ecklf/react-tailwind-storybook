@@ -1,12 +1,14 @@
 import { withInfo } from "@storybook/addon-info";
-import { addDecorator } from "@storybook/react";
+import { addDecorator, addParameters } from "@storybook/react";
+import { themes } from "@storybook/theming";
 import React from "react";
+import logoDark from "../assets/logo-dark.svg";
+import logo from "../assets/logo.svg";
 import Layout from "./Layout";
 
 addDecorator((storyFn) => <Layout>{storyFn()}</Layout>);
 addDecorator(
   withInfo({
-    inline: true,
     styles: (base) => ({
       ...base,
       infoBody: {
@@ -23,6 +25,24 @@ addDecorator(
         },
       },
     }),
+    inline: true,
+    source: true,
     propTablesExclude: [Layout],
   })
 );
+
+addParameters({
+  darkMode: {
+    // Override the default dark theme
+    dark: {
+      ...themes.dark,
+      brandImage: logoDark,
+    },
+    // Override the default light theme
+    light: {
+      ...themes.normal,
+      appBg: "#F7FAFC",
+      brandImage: logo,
+    },
+  },
+});
